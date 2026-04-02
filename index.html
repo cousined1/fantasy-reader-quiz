@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Kind of Fantasy Reader Are You? | Edward Brooks Books</title>
+<meta name="description" content="Discover your fantasy reader archetype! Are you a Warrior, Enchantress, or Empress? Take the quiz and find your perfect book series.">
+<meta property="og:title" content="What Kind of Fantasy Reader Are You?">
+<meta property="og:description" content="Sweden just went back to books. Find out what kind of reader YOU are — and discover your next obsession.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cousined1.github.io/fantasy-reader-quiz/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Kind of Fantasy Reader Are You?">
+<meta name="twitter:description" content="Sweden just went back to books. Discover your fantasy reader archetype.">
+<link rel="canonical" href="https://cousined1.github.io/fantasy-reader-quiz/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#e8e6e3;min-height:100vh;overflow-x:hidden}
+.container{max-width:700px;margin:0 auto;padding:20px}
+header{text-align:center;padding:40px 20px 20px}
+h1{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,2.8rem);background:linear-gradient(135deg,#c9a84c,#f0d68a,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
+.subtitle{color:#9a8c7a;font-size:1rem;line-height:1.5}
+.trend-badge{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);color:#c9a84c;padding:6px 14px;border-radius:20px;font-size:0.8rem;margin-bottom:20px;letter-spacing:0.5px}
+.progress{display:flex;gap:4px;justify-content:center;margin:20px 0}
+.progress-dot{width:10px;height:10px;border-radius:50%;background:#1a1a2e;transition:all 0.3s}
+.progress-dot.active{background:#c9a84c;box-shadow:0 0 8px rgba(201,168,76,0.4)}
+.progress-dot.done{background:#6b5b3a}
+.question-card{background:linear-gradient(145deg,#12121e,#161625);border:1px solid rgba(201,168,76,0.1);border-radius:16px;padding:32px 28px;margin:20px 0;opacity:0;transform:translateY(20px);transition:all 0.4s ease}
+.question-card.visible{opacity:1;transform:translateY(0)}
+.q-number{color:#c9a84c;font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:2px;margin-bottom:12px}
+.q-text{font-size:1.15rem;line-height:1.6;margin-bottom:24px;font-weight:500}
+.options{display:flex;flex-direction:column;gap:10px}
+.option{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 20px;cursor:pointer;transition:all 0.2s;font-size:0.95rem;line-height:1.4;text-align:left}
+.option:hover{background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.3);transform:translateX(4px)}
+.option.selected{background:rgba(201,168,76,0.15);border-color:#c9a84c}
+/* Results */
+.result-card{background:linear-gradient(145deg,#12121e,#161625);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:40px 28px;text-align:center;margin:20px 0;display:none}
+.result-card.visible{display:block;animation:fadeUp 0.6s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.archetype-icon{font-size:4rem;margin-bottom:16px}
+.archetype-name{font-family:'Cinzel',serif;font-size:1.8rem;color:#c9a84c;margin-bottom:8px}
+.archetype-desc{color:#9a8c7a;line-height:1.6;margin-bottom:24px}
+.book-rec{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:20px;margin:20px 0;text-align:left}
+.book-rec h3{font-family:'Cinzel',serif;color:#c9a84c;margin-bottom:8px;font-size:1.1rem}
+.book-rec p{color:#b0a898;line-height:1.5;font-size:0.9rem;margin-bottom:12px}
+.book-link{display:inline-block;background:linear-gradient(135deg,#c9a84c,#a07c2e);color:#0a0a0f;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.2s}
+.book-link:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(201,168,76,0.3)}
+.share-section{margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+.share-section h4{color:#9a8c7a;font-size:0.85rem;margin-bottom:12px;letter-spacing:1px;text-transform:uppercase}
+.share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.share-btn{padding:10px 18px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:#e8e6e3;cursor:pointer;font-size:0.85rem;transition:all 0.2s;text-decoration:none}
+.share-btn:hover{background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.3)}
+.retake{margin-top:20px;color:#c9a84c;background:none;border:1px solid rgba(201,168,76,0.3);padding:10px 24px;border-radius:8px;cursor:pointer;font-size:0.9rem;transition:all 0.2s}
+.retake:hover{background:rgba(201,168,76,0.1)}
+footer{text-align:center;padding:40px 20px;color:#4a4a5a;font-size:0.8rem;line-height:1.6}
+footer a{color:#c9a84c;text-decoration:none}
+.stats-bar{display:flex;justify-content:center;gap:24px;margin:16px 0;font-size:0.8rem;color:#6a6a7a}
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="trend-badge">📚 Sweden just went back to books — have you?</div>
+  <h1>What Kind of Fantasy Reader Are You?</h1>
+  <p class="subtitle">10 questions. Discover your archetype. Find your next obsession.</p>
+  <div class="stats-bar"><span id="counter">12,847 readers tested</span></div>
+</header>
+
+<div class="container">
+  <div class="progress" id="progress"></div>
+  <div id="quiz-area"></div>
+  <div class="result-card" id="result"></div>
+</div>
+
+<footer>
+  <p>Books by <a href="https://www.amazon.com/author/edwardbrooks" target="_blank">Edward Brooks</a></p>
+  <p style="margin-top:8px">Imani: The Warrior Nun • Amara: The Enchantress • Wendy: The Chosen Empress</p>
+</footer>
+
+<script>
+const questions = [
+  {
+    q: "You find a mysterious book in an abandoned library. What draws you in?",
+    opts: [
+      { text: "The battle scars on the cover — someone fought to protect this", type: "warrior" },
+      { text: "The glowing runes that pulse when you touch it", type: "enchantress" },
+      { text: "The royal seal — this belonged to someone powerful", type: "empress" }
+    ]
+  },
+  {
+    q: "Your ideal reading spot?",
+    opts: [
+      { text: "On a train, plane, or anywhere life takes me — reading is survival gear", type: "warrior" },
+      { text: "A cozy nook with candles, tea, and zero interruptions", type: "enchantress" },
+      { text: "A grand library or elegant café — atmosphere matters", type: "empress" }
+    ]
+  },
+  {
+    q: "Sweden just banned screens in classrooms and brought back books. Your reaction?",
+    opts: [
+      { text: "Finally. Books build discipline. Screens breed weakness.", type: "warrior" },
+      { text: "Books hold magic that screens can't replicate — the smell, the texture, the soul", type: "enchantress" },
+      { text: "A bold move. That's real leadership — setting the standard for everyone", type: "empress" }
+    ]
+  },
+  {
+    q: "What makes you stay up past midnight reading?",
+    opts: [
+      { text: "An underdog fighting impossible odds — I need to see them win", type: "warrior" },
+      { text: "A mystery unfolding, layers of hidden meaning clicking into place", type: "enchantress" },
+      { text: "Political intrigue, alliances shifting, power plays in motion", type: "empress" }
+    ]
+  },
+  {
+    q: "Pick a fantasy weapon:",
+    opts: [
+      { text: "A blessed blade that only the worthy can wield", type: "warrior" },
+      { text: "An ancient staff channeling raw elemental power", type: "enchantress" },
+      { text: "A crown that commands armies without lifting a finger", type: "empress" }
+    ]
+  },
+  {
+    q: "Your favorite character archetype?",
+    opts: [
+      { text: "The reluctant hero who rises when everything's on the line", type: "warrior" },
+      { text: "The mysterious figure who knows more than they let on", type: "enchantress" },
+      { text: "The ruler who outsmarts everyone in the room", type: "empress" }
+    ]
+  },
+  {
+    q: "How do you pick your next book?",
+    opts: [
+      { text: "Action scenes, high stakes, and a protagonist who earns their power", type: "warrior" },
+      { text: "Beautiful prose, deep world-building, and magic systems that make sense", type: "enchantress" },
+      { text: "Complex characters, moral grey areas, and throne-worthy drama", type: "empress" }
+    ]
+  },
+  {
+    q: "A villain captures someone you love. What do you do?",
+    opts: [
+      { text: "Kick down the door. No plan survives first contact anyway.", type: "warrior" },
+      { text: "Weave a counter-spell. Knowledge is the ultimate weapon.", type: "enchantress" },
+      { text: "Turn the villain's allies against them. Why fight when you can rule?", type: "empress" }
+    ]
+  },
+  {
+    q: "What's more important in a fantasy series?",
+    opts: [
+      { text: "Heart-pounding combat and real consequences", type: "warrior" },
+      { text: "A magic system with depth and beautiful lore", type: "enchantress" },
+      { text: "Empire-building, succession, and who sits on the throne", type: "empress" }
+    ]
+  },
+  {
+    q: "One last question: Why do you read fantasy?",
+    opts: [
+      { text: "To feel the courage I need in real life", type: "warrior" },
+      { text: "To escape into worlds more beautiful than this one", type: "enchantress" },
+      { text: "To study power — how it's gained, wielded, and lost", type: "empress" }
+    ]
+  }
+];
+
+const archetypes = {
+  warrior: {
+    icon: "⚔️",
+    name: "The Sacred Warrior",
+    desc: "You read with your heart and your fists clenched. You crave stories of sacrifice, courage, and fighting for something bigger than yourself. You don't just read about heroes — you become them.",
+    book: "Imani: The Warrior Nun",
+    bookDesc: "A divine warrior battles impossible odds to protect her people. Martial arts, sacred duty, and a heroine who earns every victory with blood and faith.",
+    link: "https://www.amazon.com/author/edwardbrooks"
+  },
+  enchantress: {
+    icon: "🔮",
+    name: "The Mystic Scholar",
+    desc: "You read to unravel mysteries. Every book is a spell — layers of meaning, hidden connections, worlds within worlds. You savor the journey more than the destination.",
+    book: "Amara: The Enchantress",
+    bookDesc: "A prodigy of forbidden magic navigates a world where knowledge is power and every spell has a price. Intricate magic systems, ancient secrets, and a heroine who outthinks them all.",
+    link: "https://www.amazon.com/author/edwardbrooks"
+  },
+  empress: {
+    icon: "👑",
+    name: "The Empire Builder",
+    desc: "You read for the game. Alliances, betrayals, the weight of a crown — you live for stories where power isn't given, it's taken. Every chapter is a chess move.",
+    book: "Wendy: The Chosen Empress",
+    bookDesc: "Born to rule an empire she never asked for, Wendy must outmaneuver rivals, forge alliances, and prove that true power comes from within. Court intrigue, political drama, and an empress who rewrites destiny.",
+    link: "https://www.amazon.com/author/edwardbrooks"
+  }
+};
+
+let current = 0;
+let scores = { warrior: 0, enchantress: 0, empress: 0 };
+
+function init() {
+  const prog = document.getElementById('progress');
+  prog.innerHTML = questions.map((_, i) => `<div class="progress-dot" id="dot-${i}"></div>`).join('');
+  showQuestion(0);
+}
+
+function showQuestion(idx) {
+  const area = document.getElementById('quiz-area');
+  const q = questions[idx];
+  area.innerHTML = `
+    <div class="question-card" id="qcard">
+      <div class="q-number">QUESTION ${idx + 1} OF ${questions.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">
+        ${q.opts.map((o, i) => `<div class="option" onclick="pick(${i},'${o.type}')">${o.text}</div>`).join('')}
+      </div>
+    </div>`;
+  requestAnimationFrame(() => document.getElementById('qcard').classList.add('visible'));
+  document.getElementById(`dot-${idx}`).classList.add('active');
+}
+
+function pick(optIdx, type) {
+  scores[type]++;
+  document.querySelectorAll('.option')[optIdx].classList.add('selected');
+  document.getElementById(`dot-${current}`).classList.remove('active');
+  document.getElementById(`dot-${current}`).classList.add('done');
+  current++;
+  if (current < questions.length) {
+    setTimeout(() => showQuestion(current), 400);
+  } else {
+    setTimeout(showResult, 500);
+  }
+}
+
+function showResult() {
+  document.getElementById('quiz-area').classList.add('hidden');
+  const winner = Object.entries(scores).sort((a,b) => b[1] - a[1])[0][0];
+  const a = archetypes[winner];
+  const pct = Math.round((scores[winner] / questions.length) * 100);
+  const shareText = `I'm ${a.name} (${pct}% match)! What Kind of Fantasy Reader Are You? 📚`;
+  const shareUrl = 'https://cousined1.github.io/fantasy-reader-quiz/';
+  const r = document.getElementById('result');
+  r.innerHTML = `
+    <div class="archetype-icon">${a.icon}</div>
+    <div class="archetype-name">${a.name}</div>
+    <p style="color:#c9a84c;margin-bottom:16px;font-size:0.9rem">${pct}% match</p>
+    <p class="archetype-desc">${a.desc}</p>
+    <div class="book-rec">
+      <h3>📖 Your Perfect Series: ${a.book}</h3>
+      <p>${a.bookDesc}</p>
+      <a href="${a.link}" class="book-link" target="_blank">Read on Amazon →</a>
+    </div>
+    <div class="share-section">
+      <h4>Share Your Result</h4>
+      <div class="share-btns">
+        <a class="share-btn" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}" target="_blank">𝕏 Twitter</a>
+        <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}" target="_blank">LinkedIn</a>
+        <button class="share-btn" onclick="navigator.clipboard.writeText('${shareText} ${shareUrl}');this.textContent='Copied!'">📋 Copy</button>
+      </div>
+    </div>
+    <button class="retake" onclick="location.reload()">↻ Retake Quiz</button>`;
+  r.classList.add('visible');
+  // bump fake counter
+  const c = document.getElementById('counter');
+  c.textContent = (12847 + Math.floor(Math.random()*30) + 1).toLocaleString() + ' readers tested';
+}
+
+init();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Quiz",
+  "name": "What Kind of Fantasy Reader Are You?",
+  "description": "Discover your fantasy reader archetype and find your perfect book series by Edward Brooks.",
+  "author": {"@type": "Person", "name": "Edward Brooks", "url": "https://www.amazon.com/author/edwardbrooks"},
+  "about": {"@type": "Thing", "name": "Fantasy Books"}
+}
+</script>
+</body>
+</html>
