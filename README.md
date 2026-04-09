@@ -2,51 +2,43 @@
 
 **What Kind of Fantasy Reader Are You?**
 
-A viral personality quiz that trend-jacks the "Sweden goes back to books" movement (trending on Hacker News, 256+ points) to funnel readers to Edward Brooks' Amazon KDP books.
+A viral personality quiz designed to funnel fantasy readers toward Edward Brooks' KDP catalog.
 
-## How It Works
+## What shipped in the Reader Starter Pack upgrade
 
-10 questions determine your fantasy reader archetype:
+- **Personalized starter pack** on the result screen
+- **Native share support** for mobile plus X, LinkedIn, and copy-to-clipboard
+- **Progress autosave + resume** using localStorage
+- **Result-specific theming** so each archetype feels more custom
+- **FAQPage structured data** for richer search coverage
+- **Sharper conversion path** from result → Amazon author page
+
+## Archetypes
+
 - ⚔️ **The Sacred Warrior** → Imani: The Warrior Nun
-- 🔮 **The Mystic Scholar** → Amara: The Enchantress  
+- 🔮 **The Mystic Scholar** → Amara: The Enchantress
 - 👑 **The Empire Builder** → Wendy: The Chosen Empress
 
-Each result includes a book recommendation with direct Amazon link.
+## Why this matters
 
-## Trend Source
+The app is no longer just a quick quiz. It now behaves more like a shareable mini funnel:
 
-**"Sweden goes back to basics, swapping screens for books in the classroom"** — HN front page, April 2, 2026 (256+ points)
-
-The quiz ties into the books-vs-screens cultural moment. Question 3 directly references the Sweden decision, making the quiz timely and shareable.
-
-## SEO
-
-- Schema.org Quiz structured data
-- Open Graph + Twitter Card meta tags
-- Canonical URL set
-- Mobile responsive
-- Fast load (zero dependencies, single file)
+1. Reader takes the quiz
+2. Gets a stronger identity-based result
+3. Copies or shares a starter-pack caption
+4. Clicks through to Edward Brooks' books
 
 ## Deploy
 
-1. Create GitHub repo: `cousined1/fantasy-reader-quiz`
-2. Push `index.html`
-3. Enable GitHub Pages (Settings → Pages → Deploy from branch → main → root)
-4. Live at: https://cousined1.github.io/fantasy-reader-quiz/
+1. Push to GitHub repo: `cousined1/fantasy-reader-quiz`
+2. Enable GitHub Pages (main / root)
+3. Live URL: https://cousined1.github.io/fantasy-reader-quiz/
 
-## Cross-Promotion
+## Promotion ideas
 
-- All 3 book series linked
-- Amazon Author page in footer
-- Social sharing built in (Twitter, LinkedIn, clipboard)
+- TikTok/Reels: “Apparently this is how I read fantasy…”
+- X: “I built a fantasy reader archetype quiz and it low-key knows me too well.”
+- Reddit: fantasy-reading identity / book recommendation threads
+- Pinterest: turn each result into a share card later
 
-## Promotion Ideas
-
-- Reddit: r/Fantasy, r/books, r/BookTok ("Sweden went back to books — what kind of reader are you?")
-- Twitter/X: "Sweden just banned screens in classrooms. Meanwhile, I built a quiz to find your fantasy reader archetype 📚"
-- LinkedIn: "The books-vs-screens debate is back. Here's a fun way to rediscover your reading identity."
-- BookTok: Screenshot results, duet format
-
----
-
-Built by Javante 🔧 | Nightly Build Session | April 2, 2026
+Built by Javante 🔧 | Nightly Build Session | April 8, 2026
